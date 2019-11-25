@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="548d9c24-89ae-4c3c-be27-12ff0263a1ca" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../creditmutuel/module.py" beforeDir="false" afterPath="$PROJECT_DIR$/../creditmutuel/module.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../weather/module.py" beforeDir="false" afterPath="$PROJECT_DIR$/../weather/module.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../youtube/module.py" beforeDir="false" afterPath="$PROJECT_DIR$/../youtube/module.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tools/boilerplate/boilerplate.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../tools/boilerplate/boilerplate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../weboob/core/modules.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../weboob/core/modules.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1U6Mv3q5sf7tG7pi5GTyKFxeFIG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="548d9c24-89ae-4c3c-be27-12ff0263a1ca" name="Default Changelist" comment="" />
+      <created>1574672818722</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1574672818722</updated>
+    </task>
+    <servers />
+  </component>
+</project>
