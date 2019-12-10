@@ -19,32 +19,29 @@
 
 from __future__ import unicode_literals
 
-from weboob.browser import LoginBrowser, URL
-from weboob.exceptions import BrowserIncorrectPassword
-
-from .pages import LoginPage, AccountPage
-from weboob.browser import need_login
+from weboob.browser import LoginBrowser, URL, PagesBrowser, need_login
+from .pages import LoginPage, AccountPage, HistoryPage
 
 
-class FakebankBrowser(LoginBrowser):
-    BASEURL = 'https://people.lan.budget-insight.com/~ntome/fake_bank.wsgi'
+class FakebankBrowser(LoginBrowser, PagesBrowser):
+    BASEURL = 'https://people.lan.budget-insight.com'
 
-    login = URL(r'https://people.lan.budget-insight.com/~ntome/fake_bank.wsgi/v1/login', LoginPage)
-    accounts = URL(r'https://people.lan.budget-insight.com/~ntome/fake_bank.wsgi/v1/accounts', AccountPage)
+    login = URL('/~ntome/fake_bank.wsgi/v1/login', LoginPage)
+    accounts = URL('/~ntome/fake_bank.wsgi/v1/accounts', AccountPage)
+    history_page = URL('/~ntome/fake_bank.wsgi/v1/accounts/(?P<id>)', HistoryPage)
 
     def do_login(self):
         self.login.stay_or_go()
-
         self.page.login(self.username, self.password)
-        print('login success')
-
-    def go_home(self):
-        self.home.go()
-
-        assert self.home.is_here()
 
     @need_login
-    def get_accounts_list(self):
+    def get_accounts(self):
         self.accounts.stay_or_go()
-        print("Page=", self.page.content)
+        # print("Page=", self.page.content)
         return self.page.get_accounts()
+
+    @need_login
+    def get_history(self, account):
+        self.history_page.stay_or_go(id=account.id)
+        # print("History=",self.page.content)
+        return self.page.iter_history()

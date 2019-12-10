@@ -21,10 +21,10 @@ from __future__ import unicode_literals
 from weboob.tools.json import json
 from weboob.browser.filters.json import Dict
 
-from weboob.browser.pages import LoggedPage, HTMLPage, JsonPage
+from weboob.browser.pages import LoggedPage, HTMLPage, JsonPage, pagination
 from weboob.browser.filters.html import Attr
-from weboob.browser.filters.standard import CleanDecimal, CleanText, Regexp
-from weboob.capabilities.bank import Account
+from weboob.browser.filters.standard import CleanDecimal, CleanText, Regexp,  Date
+from weboob.capabilities.bank import Account, Transaction
 from weboob.browser.elements import method, TableElement, ItemElement, DictElement
 from weboob.browser.filters.html import Link, TableCell
 from weboob.browser.filters.html import CSS
@@ -32,22 +32,12 @@ from weboob.browser.filters.html import CSS
 
 class LoginPage(HTMLPage):
 
-    def get_token(self):
-        return self.doc['detail']['token']
-
     def login(self, username, password):
-        '''
-        form = self.get_form()
-        form['login'] = username
-        form['password'] = password
-        form.submit()
-        '''
 
         json_data = {
             'login': username,
             'password': password
         }
-        print(username, password)
         self.browser.location('https://people.lan.budget-insight.com/~ntome/fake_bank.wsgi/v2/login.json',
                               data=json_data, method='POST')
 
@@ -62,3 +52,20 @@ class AccountPage(JsonPage):  # (LoggedPage, HTMLPage):
             obj_id = CleanText(Dict('id'))
             obj_label = CleanText(Dict('label'))
             obj_balance = CleanText(Dict('balance'))
+
+
+class HistoryPage(LoggedPage, JsonPage):
+    @pagination
+    @method
+    class iter_history(DictElement):
+        item_xpath = 'transactions'
+        def next_page(self):
+            next_page = (u'%s%s' % (self.page.browser.url.split('?', 1)[0], Link(u'//a[text()="▶"]')(self)))
+            print(next_page)
+            return next_page
+
+        class item(ItemElement):
+            klass = Transaction
+            obj_amount = CleanText(Dict('amount'))
+            obj_label = CleanText(Dict('label'))
+            obj_date = Date(CleanText(Dict('amount')))

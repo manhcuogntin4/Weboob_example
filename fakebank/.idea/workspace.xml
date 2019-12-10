@@ -2,11 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="548d9c24-89ae-4c3c-be27-12ff0263a1ca" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../fakebank_v2/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fakebank_v2/browser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fakebank_v2/module.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fakebank_v2/pages.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fakebank_v2/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fakebankv3/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fakebankv3/browser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fakebankv3/compat/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fakebankv3/compat/weboob_browser_filters_standard.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fakebankv3/compat/weboob_browser_url.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fakebankv3/compat/weboob_capabilities_bank.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fakebankv3/compat/weboob_exceptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fakebankv3/compat/weboob_tools_captcha_virtkeyboard.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fakebankv3/module.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fakebankv3/pages.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fakebankv3/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bnporc/enterprise/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/../bnporc/enterprise/pages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bnporc/module.py" beforeDir="false" afterPath="$PROJECT_DIR$/../bnporc/module.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../creditmutuel/module.py" beforeDir="false" afterPath="$PROJECT_DIR$/../creditmutuel/module.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../groupama/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/../groupama/pages.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../weather/module.py" beforeDir="false" afterPath="$PROJECT_DIR$/../weather/module.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../youtube/module.py" beforeDir="false" afterPath="$PROJECT_DIR$/../youtube/module.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../tools/boilerplate/boilerplate.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../tools/boilerplate/boilerplate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../weboob/browser/browsers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../weboob/browser/browsers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../weboob/browser/elements.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../weboob/browser/elements.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../weboob/browser/filters/standard.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../weboob/browser/filters/standard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../weboob/browser/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../weboob/browser/pages.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../weboob/core/modules.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../weboob/core/modules.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../weboob/tools/captcha/virtkeyboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../weboob/tools/captcha/virtkeyboard.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

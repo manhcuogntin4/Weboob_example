@@ -52,3 +52,7 @@ class Fakebank_V2Module(Module, CapBank):
     def iter_accounts(self):
         for account in self.browser.get_accounts_list():
             yield account
+
+    def iter_history(self, account):
+        transactions = self.browser.get_history(account)
+        return transactions

@@ -20,12 +20,13 @@
 from __future__ import unicode_literals
 
 from weboob.browser.pages import HTMLPage
-
+from weboob.browser.pages import HTMLPage, LoggedPage, pagination
 from weboob.browser.pages import LoggedPage, HTMLPage
 from weboob.browser.filters.html import Attr
-from weboob.browser.filters.standard import CleanDecimal, CleanText, Regexp
-from weboob.capabilities.bank import Account
-from weboob.browser.elements import method, TableElement, ItemElement
+from weboob.browser.filters.standard import CleanDecimal, CleanText, Regexp, Date, Env, TableCell
+from weboob.capabilities.bank import Account, Transaction
+from weboob.capabilities.base import Field, NotAvailable
+from weboob.browser.elements import method, TableElement, ItemElement, ListElement
 from weboob.browser.filters.html import Link, TableCell
 from weboob.browser.filters.html import CSS
 
@@ -40,15 +41,43 @@ class LoginPage(HTMLPage):
 
 class AccountPage(LoggedPage, HTMLPage):
     @method
-    class get_accounts(TableElement):
-        head_xpath = '//html/body/table/thead/tr/th'
-        item_xpath = '//html/body/table/tbody/tr'
-        col_label = [u'Nom du compte', u'Solde']
+    class get_accounts(ListElement):
+        item_xpath = '/html/body/table/tbody/tr'
 
         class item(ItemElement):
             klass = Account
 
-            obj_id = Regexp(Attr('.//a', 'href'), r'(\d+)')  # & Type(type=int)
-            obj_label = CleanText('./td[1]')
+            obj_label = CleanText('.//a')
+
+            def obj_id(self):
+                return Regexp(self.obj_label, r'(\d+)')(self)
+
             obj_balance = CleanDecimal('./td[2]', replace_dots=True)
-            #obj_label = CleanText(TableCell('label'))
+
+
+class HistoryPage(LoggedPage, HTMLPage):
+    @pagination
+    @method
+    class iter_history(ListElement):
+        item_xpath = '/html/body/table/tbody/tr'
+
+        def next_page(self):
+            next_page = self.el.xpath('//a[text()="▶"]')
+            if next_page:
+                return Attr(next_page, 'href')(self)
+
+        class item(ItemElement):
+            klass = Transaction
+
+            obj_date = Date(CleanText('./td[1]'), dayfirst=True)
+            obj_label = CleanText('./td[2]')
+
+            def obj_amount(self):
+                credit = CleanDecimal('./td[3]', replace_dots=True, default=None)(self)
+                debit = CleanDecimal('./td[4]', replace_dots=True, default=None)(self)
+
+                if credit is None:
+                    return debit
+                else:
+                    return credit
+

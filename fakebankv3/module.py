@@ -19,34 +19,40 @@
 
 from __future__ import unicode_literals
 
-from weboob.capabilities.bank import CapBank
+
 from weboob.tools.backend import Module, BackendConfig
 from weboob.tools.value import ValueBackendPassword, Value
-from .browser import FakebankBrowser
+from weboob.capabilities.bank import CapBank
 
-__all__ = ['FakebankModule']
+from .browser import Fakebankv3Browser
 
 
-class FakebankModule(Module, CapBank):
-    NAME = 'fakebank'
-    DESCRIPTION = 'fakebank website'
+__all__ = ['Fakebankv3Module']
+
+
+class Fakebankv3Module(Module, CapBank):
+    NAME = 'fakebankv3'
+    DESCRIPTION = 'fakebankv3 website'
     MAINTAINER = 'nguyen'
     EMAIL = 'manhcuongeic@gmail.com'
     LICENSE = 'LGPLv3+'
     VERSION = '1.5'
 
-    BROWSER = FakebankBrowser
+    BROWSER = Fakebankv3Browser
 
-    CONFIG = BackendConfig(
-        ValueBackendPassword('login', label='Identifiant', masked=False, required=True),
-        ValueBackendPassword('password', label='Mot de passe', required=True))
+    CONFIG = BackendConfig(Value('login', label='Username', regexp='.+', default='pi'),
+                           ValueBackendPassword('password', label='Password', default='314159'),
+                           )
+
 
     def create_default_browser(self):
         return self.create_browser(self.config['login'].get(), self.config['password'].get())
 
     def iter_accounts(self):
-        for account in self.browser.get_accounts():
+        for account in self.browser.get_accounts_list():
             yield account
 
     def iter_history(self, account):
         return self.browser.get_history(account)
+
+

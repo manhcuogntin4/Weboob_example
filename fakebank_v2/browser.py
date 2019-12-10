@@ -24,7 +24,7 @@ from __future__ import unicode_literals
 from weboob.browser import LoginBrowser, URL
 from weboob.exceptions import BrowserIncorrectPassword
 
-from .pages import LoginPage, AccountPage
+from .pages import LoginPage, AccountPage, HistoryPage
 from weboob.browser import need_login
 
 
@@ -33,7 +33,7 @@ class Fakebank_V2Browser(LoginBrowser):
 
     login = URL(r'https://people.lan.budget-insight.com/~ntome/fake_bank.wsgi/v2/#login', LoginPage)
     accounts = URL(r'https://people.lan.budget-insight.com/~ntome/fake_bank.wsgi/v2/accounts.json', AccountPage)
-
+    history_url = URL(r'https://people.lan.budget-insight.com/~ntome/fake_bank.wsgi/v2/accounts/(?P<id>\d+).json', HistoryPage)
     def do_login(self):
         self.login.stay_or_go()
         r=self.page.login(self.username, self.password)
@@ -55,3 +55,9 @@ class Fakebank_V2Browser(LoginBrowser):
         self.accounts.stay_or_go()
         print(self.page.get('accounts'))
         return self.page.get_accounts()
+
+    @need_login
+    def get_history(self, selected_account):
+        self.history_url.go(id=selected_account.id)
+        for transaction in self.page.iter_history():
+            yield transaction
